@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import albumData from '../data/albums'
-import { myclassname } from './album.css'
 
 class Library extends React.Component {
   constructor (props) {
