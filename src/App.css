@@ -1,4 +1,5 @@
 .App {
+  color: white;
   text-align: center;
 }
 
@@ -29,4 +30,5 @@
 
 .link {
   margin-right: 20px;
+  color: white;
 }

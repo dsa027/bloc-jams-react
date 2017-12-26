@@ -26,7 +26,6 @@ class Album extends React.Component {
             <div id="release-info">{this.state.album.releaseInfo}</div>
           </div>
         </section>
-        <h4>{'Song List'}</h4>
         <table id="song-list">
           <colgroup>
             <col id="song-number-column" />
@@ -37,9 +36,17 @@ class Album extends React.Component {
             {this.state.album.songs.map ((song, index) => {
               return (
                 <tr key={index}>
-                  <td>{index+1}</td>
-                  <td>{song.title}</td>
-                  <td>{song.duration}</td>
+                  <td>
+                    <button>
+                      <span className="song-number">{index + 1}</span>
+                      <span className="ion-pause"></span>
+                      <span className="ion-play"></span>
+                    </button>
+                  </td>
+                  <td className='song-title'>{song.title}</td>
+                  <td className='song-duration'>
+                    {Math.floor(song.duration/60)}:{Math.floor(song.duration%60)}
+                  </td>
                 </tr>
               )
             })}
