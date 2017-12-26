@@ -1,11 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-const Album = () => {
-  return (
-    <section className='album'>
-      {'Here\'s that album you\'ve been looking for!'}
-    </section>
-  )
+class Album extends React.Component {
+  render () {
+    return (
+      <section className='album'>
+        {this.props.match.params.slug} {'Album will go here.'}
+      </section>
+    )
+  }
 }
 
-export default Album;
+export default Album
