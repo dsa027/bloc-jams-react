@@ -38,17 +38,30 @@ class Album extends React.Component {
     })
   }
 
+  isSameSong(song) {
+    if (!song) return false;
+
+    return (this.state.currentSong === song)
+  }
+
   handleSongClick(song) {
-    const isSameSong = this.state.currentSong === song
-    if (isSameSong && this.state.isPlaying) {
+    if (this.isSameSong(song) && this.state.isPlaying) {
       this.pause();
     }
     else {
-      if (!isSameSong) {
+      if (! this.isSameSong(song)) {
         this.setSong(song)
       }
       this.play();
     }
+  }
+
+  playPauseClass(song) {
+    if (this.isSameSong(song)) {
+      return (this.state.isPlaying ? ' playing' : ' paused')
+    }
+
+    return '';
   }
 
   render() {
@@ -71,7 +84,9 @@ class Album extends React.Component {
           <tbody>
             {this.state.album.songs.map ((song, index) => {
               return (
-                <tr className='song' key={index} onClick={() => this.handleSongClick(song)}>
+                <tr
+                  className={'song' + this.playPauseClass(song)}
+                  key={index} onClick={() => this.handleSongClick(song)}>
                   <td className='song-actions'>
                     <button>
                       <span className="song-number">{index + 1}</span>
