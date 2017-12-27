@@ -18,7 +18,7 @@ table {
   border-collapse: collapse;
   clear: both;
   font-weight: 100;
-  margin-top: 3rem;
+  margin-top: 2rem;
   overflow: hidden;
   width: 100%;
 }
@@ -117,4 +117,15 @@ tr.playing button:focus .ion-pause {
 .song-duration {
   color: hsla(0, 0%, 100%, 0.5);
   text-align: right;
+}
+
+#album-title {
+  font-size: 1.25em;
+}
+
+#small {
+  font-size: 0.75em;
+}
+#artist {
+  font-size: 1.5em;
 }

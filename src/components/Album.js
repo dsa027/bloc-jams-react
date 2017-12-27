@@ -1,4 +1,5 @@
 import React from 'react'
+import PlayerBar from './PlayerBar'
 import albumData from './../data/albums'
 import { table } from './album.css'
 
@@ -56,6 +57,34 @@ class Album extends React.Component {
     }
   }
 
+  findCurrentSongIdx() {
+    return this.state.album.songs.findIndex(song =>
+      song === this.state.currentSong
+    )
+  }
+
+  handleNextPrevClick(isPrev) {
+    if (! this.state.isPlaying) return
+
+    let idx = this.findCurrentSongIdx() + (isPrev ? -1 : 1)
+
+    if (isPrev && idx < 0) return
+    if (! isPrev && idx >= this.state.album.songs.length) return
+
+    const song = this.state.album.songs[idx]
+
+    this.setSong(song)
+    this.play()
+  }
+
+  handlePrevSongClick() {
+    this.handleNextPrevClick(true)
+  }
+
+  handleNextSongClick() {
+    this.handleNextPrevClick(false)
+  }
+
   playPauseClass(song) {
     if (this.isSameSong(song)) {
       return (this.state.isPlaying ? ' playing' : ' paused')
@@ -70,9 +99,18 @@ class Album extends React.Component {
         <section id="album-info">
           <img id="album-cover-art" src={this.state.album.albumCover} alt='album cover'/>
           <div className="album-details">
-            <h1 id="album-title">{this.state.album.title}</h1>
-            <h2 className="artist">{this.state.album.artist}</h2>
-            <div id="release-info">{this.state.album.releaseInfo}</div>
+            <p>
+              <span id="album-title">
+                {this.state.album.title}
+              </span>
+              <span id='small'> by </span>
+              <span id='artist'>
+                {this.state.album.artist}
+              </span>
+            </p>
+            <p id='release-info'>
+              {this.state.album.releaseInfo}
+            </p>
           </div>
         </section>
         <table id="song-list">
@@ -103,6 +141,13 @@ class Album extends React.Component {
             })}
           </tbody>
         </table>
+        <PlayerBar
+          isPlaying={this.state.isPlaying}
+          currentSong={this.state.currentSong}
+          handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+          handleNextSongClick={() => this.handleNextSongClick()}
+          handlePrevSongClick={() => this.handlePrevSongClick()}
+        />
       </section>
     )
   }
