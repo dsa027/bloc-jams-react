@@ -23,6 +23,7 @@ class Album extends React.Component {
     // audioElement is the music player controller
     this.audioElement = document.createElement('audio')
     this.audioElement.src = album.songs[0].audioSrc
+    this.volume = 0.8
   }
 
   play() {
@@ -117,9 +118,11 @@ class Album extends React.Component {
     this.audioListeners = {
       timeUpdate: (e) => this.setState({currentTime: this.audioElement.currentTime}),
       durationChange: (e) => this.setState({duration: this.audioElement.duration}),
+      ended: (e) => this.setState({currentTime: 0, isPlaying: false})
     }
     this.audioElement.addEventListener('timeupdate', this.audioListeners.timeUpdate)
     this.audioElement.addEventListener('durationchange', this.audioListeners.durationChange)
+    this.audioElement.addEventListener('ended', this.audioListeners.ended)
   }
 
   // remove event listeners to avoid memory leak
@@ -137,6 +140,14 @@ class Album extends React.Component {
     this.audioElement.currentTime = newTime
     // change state's current time for udpating range
     this.setState({currentTime: newTime})
+  }
+
+  // when the user changes the volume, in the player bar,
+  //make sure audio gets changed
+  handleVolumeChange(e) {
+    let newVol = e.target.value
+    this.audioElement.volume = newVol
+    this.volume = newVol
   }
 
   render() {
@@ -196,6 +207,8 @@ class Album extends React.Component {
           currentTime={this.state.currentTime}
           duration={this.state.duration}
           handleTimeChange={(e) => this.handleTimeChange(e)}
+          handleVolumeChange={(e) => this.handleVolumeChange(e)}
+          volume = {this.volume}
         />
       </section>
     )

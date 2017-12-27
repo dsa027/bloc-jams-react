@@ -46,7 +46,14 @@ import styles from './playerBar.css'
           </section>
           <section id="volume-control">
             <div className="icon ion-volume-low"></div>
-            <input type="range" className="seek-bar" value="80" onChange={()=>{}}/>
+            <input
+              type="range"
+              className="seek-bar"
+              value={this.props.volume}
+              min='0'
+              max='1'
+              step='0.01'
+              onChange={this.props.handleVolumeChange}/>
             <div className="icon ion-volume-high"></div>
           </section>
         </section>
