@@ -12,9 +12,9 @@ class App extends Component {
         <header>
           <nav>
             <p>
-              <Link className='link' to='/'>Landing</Link>
+              <Link className='link' to='/'>Home</Link>
               <Link className='link' to='/library'>Library</Link>
-              <Link className='link' to='/album'>Album</Link>
+              {/* <Link className='link' to='/album'>Album</Link> */}
             </p>
           </nav>
         </header>

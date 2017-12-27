@@ -7,6 +7,7 @@ class Album extends React.Component {
   constructor(props) {
     super(props)
 
+    // find the album as contained in :slug
     const album = albumData.find (album => {
       return this.props.match.params.slug === album.slug
     })
@@ -15,8 +16,11 @@ class Album extends React.Component {
       album: album,
       currentSong: album.songs[0],
       isPlaying: false,
+      currentTime: 0,
+      duration: 0
     }
 
+    // audioElement is the music player controller
     this.audioElement = document.createElement('audio')
     this.audioElement.src = album.songs[0].audioSrc
   }
@@ -31,20 +35,25 @@ class Album extends React.Component {
     this.setState({ isPlaying: false })
   }
 
+  // set new song via state
   setSong(song) {
+    // tell our controller there's a new song
     this.audioElement.src = song.audioSrc
+    // keep it in state
     this.setState({
       currentSong: song,
       isPlaying: false,
     })
   }
 
+  // same song as what's currently playing?
   isSameSong(song) {
     if (!song) return false;
 
     return (this.state.currentSong === song)
   }
 
+  // clicked on a song number/title/time, needs to play or pause
   handleSongClick(song) {
     if (this.isSameSong(song) && this.state.isPlaying) {
       this.pause();
@@ -57,20 +66,27 @@ class Album extends React.Component {
     }
   }
 
+  // get the index of the currently playing song in the album.
+  // used to tell previous or next song
   findCurrentSongIdx() {
     return this.state.album.songs.findIndex(song =>
       song === this.state.currentSong
     )
   }
 
-  handleNextPrevClick(isPrev) {
+  // executed on either prev or next click
+  handlePrevNext({isPrev=false}) {
+    // if not playing anthing, just return
     if (! this.state.isPlaying) return
 
+    // index of song in album +/- 1 for next/prev
     let idx = this.findCurrentSongIdx() + (isPrev ? -1 : 1)
 
+    // not a circular scroll. stop at top and bottom
     if (isPrev && idx < 0) return
     if (! isPrev && idx >= this.state.album.songs.length) return
 
+    // new song
     const song = this.state.album.songs[idx]
 
     this.setSong(song)
@@ -78,19 +94,49 @@ class Album extends React.Component {
   }
 
   handlePrevSongClick() {
-    this.handleNextPrevClick(true)
+    this.handlePrevNext({isPrev:true})
   }
 
   handleNextSongClick() {
-    this.handleNextPrevClick(false)
+    this.handlePrevNext({isPrev:false})
   }
 
+  // this is done in order to show the correct play/pause ionicon
+  // as done in css
   playPauseClass(song) {
     if (this.isSameSong(song)) {
       return (this.state.isPlaying ? ' playing' : ' paused')
     }
 
     return '';
+  }
+
+  // add event listeners for the song's currentTime and duration
+  componentDidMount() {
+    // need to save thise so that we can remove them when finished (avoid mem leak)
+    this.audioListeners = {
+      timeUpdate: (e) => this.setState({currentTime: this.audioElement.currentTime}),
+      durationChange: (e) => this.setState({duration: this.audioElement.duration}),
+    }
+    this.audioElement.addEventListener('timeupdate', this.audioListeners.timeUpdate)
+    this.audioElement.addEventListener('durationchange', this.audioListeners.durationChange)
+  }
+
+  // remove event listeners to avoid memory leak
+  componentWillUnmount() {
+    this.audioElement.src = null;
+    this.audioElement.removeEventListener('timeupdate', this.audioListeners.timeUpdate)
+    this.audioElement.removeEventListener('durationchange', this.audioListeners.durationChange)
+  }
+
+  // when the song's time seekbar is changed, this gets called
+  handleTimeChange(e) {
+    // determine how many seconds the range's handle is at
+    let newTime = e.target.value * this.audioElement.duration
+    // change song's current time
+    this.audioElement.currentTime = newTime
+    // change state's current time for udpating range
+    this.setState({currentTime: newTime})
   }
 
   render() {
@@ -147,6 +193,9 @@ class Album extends React.Component {
           handleSongClick={() => this.handleSongClick(this.state.currentSong)}
           handleNextSongClick={() => this.handleNextSongClick()}
           handlePrevSongClick={() => this.handlePrevSongClick()}
+          currentTime={this.state.currentTime}
+          duration={this.state.duration}
+          handleTimeChange={(e) => this.handleTimeChange(e)}
         />
       </section>
     )
