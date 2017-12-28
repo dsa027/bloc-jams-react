@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, NavLink } from 'react-router-dom';
 import './App.css';
 import Landing from './components/Landing';
 import Library from './components/Library';
@@ -12,8 +12,12 @@ class App extends Component {
         <header>
           <nav>
             <p>
-              <Link className='link' to='/'>Home</Link>
-              <Link className='link' to='/library'>Library</Link>
+              <NavLink exact className='link' to='/' activeStyle={{color: '#d0021b'}}>
+                Home
+              </NavLink>
+              <NavLink className='link' to='/library' activeStyle={{color: '#d0021b'}}>
+                Library
+              </NavLink>
               {/* <Link className='link' to='/album'>Album</Link> */}
             </p>
           </nav>

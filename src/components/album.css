@@ -1,12 +1,19 @@
 body {
   background-color: azure;
-  background-image: url('/assets/images/blurred_backgrounds/kimberly-richards-335.jpg');
+  /* background-image: url('/assets/images/blurred_backgrounds/kimberly-richards-335.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
-  background-size: cover;
+  background-size: cover; */
   /* color: white;
   font-family: 'Open Sans', sans-serif; */
+
+  background-image: url('/assets/images/blurred_backgrounds/kimberly-richards-335.jpg'),
+              url('/assets/images/WaveStreamerLogo.png');
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
+  background-position: center center, top left;
+  background-size: cover, 20%;
 }
 
 .album {
@@ -15,6 +22,15 @@ body {
 
 img {
   width: 200px;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  border-radius: 25%;
+  margin-top: 20px;
+}
+
+img:hover {
+  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(0%);
 }
 
 table {
@@ -22,6 +38,13 @@ table {
   align-items: center;
   justify-content: center;
 }
+
+#album-link {
+  text-decoration: none;
+  color: black;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
 #song-list {
   border-collapse: collapse;
   clear: both;

@@ -1,4 +1,4 @@
-body {
+/* body {
   background-color: azure;
   background-image: url('/assets/images/blurred_backgrounds/kimberly-richards-335.jpg');
   background-repeat: no-repeat;
@@ -6,5 +6,16 @@ body {
   background-position: center center;
   background-size: cover;
   /* color: white;
-  font-family: 'Open Sans', sans-serif; */
+  font-family: 'Open Sans', sans-serif;
 }
+
+img {
+  border-radius: 25%;
+  margin-top: 20px;
+}
+
+#album-link {
+  text-decoration: none;
+  color: black;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+} */
