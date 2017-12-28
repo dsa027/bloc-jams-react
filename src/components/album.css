@@ -1,9 +1,16 @@
 body {
-  background-color: blue;
+  background-color: azure;
+  background-image: url('/assets/images/blurred_backgrounds/kimberly-richards-335.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  /* color: white;
+  font-family: 'Open Sans', sans-serif; */
 }
 
 .album {
-  color: white;
+  color: black;
 }
 
 img {
@@ -12,6 +19,7 @@ img {
 
 table {
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 #song-list {
@@ -57,16 +65,20 @@ tr.paused .song-number {
 }
 
 tr:hover {
-  background: hsla(0, 0%, 0%, 0.05);
+  /* background: hsla(0, 0%, 0%, 0.05); */
+  background: rgba(0, 0, 0, 0.05);
   cursor: pointer;
 }
 
 tr.playing {
-  background: hsla(0, 0%, 0%, 0.1);
+  background: rgba(0, 0, 0, 0.1);
+  /* background: hsla(0, 0%, 0%, 0.1); */
 }
 
 tr:hover .song-title {
-  color: hsla(0, 0%, 100%, 1);
+  color: rgba(0, 0, 0, 1);
+  /* color: hsla(0, 0%, 100%, 1); */
+  font-size: 1.1rem;
 }
 
 tr:last-child {
@@ -80,7 +92,7 @@ td {
 tr button {
   border: none;
   background: none;
-  color: white;
+  color: black;
   cursor: pointer;
   padding: 0;
 }
@@ -107,15 +119,18 @@ tr.playing button:focus .ion-pause {
 
 
 .song-number {
-  color: hsla(0, 0%, 100%, 0.66);
+  color: rgba(0, 0, 0, 0.66);
+  /* color: hsla(0, 0%, 100%, 0.66); */
 }
 
 .song-title {
-  color: hsla(0, 0%, 100%, 0.9);
+  color: rgba(0, 0, 0, 0.9);
+  /* color: hsla(0, 0%, 100%, 0.9); */
 }
 
 .song-duration {
-  color: hsla(0, 0%, 100%, 0.5);
+  color: rgba(0, 0, 0, 0.5);
+  /* color: hsla(0, 0%, 100%, 0.5); */
   text-align: right;
 }
 

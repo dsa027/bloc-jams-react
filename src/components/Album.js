@@ -1,7 +1,7 @@
 import React from 'react'
 import PlayerBar from './PlayerBar'
 import albumData from './../data/albums'
-import { table } from './album.css'
+import './album.css'
 
 class Album extends React.Component {
   constructor(props) {
@@ -171,11 +171,6 @@ class Album extends React.Component {
           </div>
         </section>
         <table id="song-list">
-          <colgroup>
-            <col id="song-number-column" />
-            <col id="song-title-column" />
-            <col id="song-duration-column" />
-          </colgroup>
           <tbody>
             {this.state.album.songs.map ((song, index) => {
               return (

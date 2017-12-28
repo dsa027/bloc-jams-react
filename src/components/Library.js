@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import albumData from '../data/albums'
+import './library.css'
 
 class Library extends React.Component {
   constructor (props) {
@@ -14,7 +15,7 @@ class Library extends React.Component {
       <section className='library'>
         {
           this.state.albums.map ( (album, index) =>
-            <Link style={{color: 'white'}} to={`/album/${album.slug}`} key={index}>
+            <Link to={`/album/${album.slug}`} key={index}>
               <img src={album.albumCover} alt={album.title} />
               <div>{album.title}</div>
               <div>{album.artist}</div>

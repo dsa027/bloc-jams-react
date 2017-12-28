@@ -15,27 +15,31 @@
 #buttons button {
   border: none;
   background: none;
-  color: white;
+  color: black;
   font-size: 1.2rem;
-  color: hsla(0, 0%, 100%, 0.5);
+  color: rgba(0, 0, 0, 0.5);
+  /* color: hsla(0, 0%, 100%, 0.5); */
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
 #buttons button:hover, #buttons button:focus {
   outline: none;
+  /* color: rgba(0, 0, 0, 1); */
   color: hsla(0, 0%, 100%, 1);
   text-shadow: 2px 4px 3px hsla(0,0%,0%,0.25);
 }
 
 #buttons #play-pause {
-  color: hsla(0, 0%, 100%, 0.8);
+  color: rgba(0, 0, 0, 0.75);
+  /* color: hsla(0, 0%, 100%, 0.8); */
   font-size: 2rem;
   margin: 0.5rem 1rem 0;
   transform: translateY(0.3rem);
 }
 
 #buttons #play-pause:hover {
+  /* color: rgba(0, 0, 0, 1); */
   color: hsla(0, 0%, 100%, 1);
 }
 
@@ -61,7 +65,8 @@
 #time-control div,
 #volume-control div {
   font-size: 0.8rem;
-  color: hsla(0, 0%, 100%, 0.4);
+  color: rgba(0, 0, 0, 1);
+  /* color: hsla(0, 0%, 100%, 0.4); */
   width: 35px;
   display: block;
   float: left;
@@ -109,7 +114,7 @@ input[type=range]::-webkit-slider-thumb {
   height: 13px;
   width: 13px;
   border-radius: 50%;
-  background: hsla(289, 48%, 85%, 0.5);
+  background: rgba(0, 0, 0, 0.5);/*hsla(289, 48%, 85%, 0.5);*/
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -6.5px;

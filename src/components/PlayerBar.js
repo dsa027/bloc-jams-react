@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './playerBar.css'
+import './playerBar.css'
 
   class PlayerBar extends Component {
     formatSeconds(seconds) {

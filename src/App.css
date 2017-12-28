@@ -1,5 +1,5 @@
 .App {
-  color: white;
+  color: black;
   text-align: center;
 }
 
@@ -12,7 +12,7 @@
   background-color: #222;
   height: 150px;
   padding: 20px;
-  color: white;
+  color: black;
 }
 
 .App-title {
@@ -30,5 +30,5 @@
 
 .link {
   margin-right: 20px;
-  color: white;
+  color: black;
 }
