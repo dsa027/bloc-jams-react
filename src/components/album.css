@@ -1,5 +1,4 @@
 body {
-  background-color: azure;
   /* background-image: url('/assets/images/blurred_backgrounds/kimberly-richards-335.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -8,12 +7,10 @@ body {
   /* color: white;
   font-family: 'Open Sans', sans-serif; */
 
-  background-image: url('/assets/images/blurred_backgrounds/kimberly-richards-335.jpg'),
-              url('/assets/images/WaveStreamerLogo.png');
-  background-repeat: no-repeat, no-repeat;
-  background-attachment: fixed, fixed;
-  background-position: center center, top left;
-  background-size: cover, 20%;
+  background: url('/assets/images/blurred_backgrounds/kimberly-richards-335.jpg') center center no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: azure;
 }
 
 .album {
